@@ -3,12 +3,18 @@ const {asyncAwait, getDirectories, getRdfFile} = require('./../tools/utils');
 const {createRecord} = require('./../services/modelService');
 const {getDataFromFile} = require('./../services/extractor');
 
+/**
+ * Function to read all the files from from source and loops through each folder to get all the RDF files
+ * Data is extracted from each RDF file and stored in the database
+ * @param source -> ./source
+ * @returns {Promise.<string>}
+ */
 const startExtraction = async (source) => {
 	try {
 		const directories = getDirectories(source);
 		console.log(`Total available folders: ${directories.length}`.brightGreen);
 
-		for(let i=0; i<directories.length; i++) {
+		for(let i=0; i<100; i++) {
 			const fileName = getRdfFile(directories[i]);
 			const fileSource = `${directories[i]}/${fileName}`;
 			console.log(`♦♦♦`.brightBlue + `Reading data from ${fileSource}` + `♦♦♦`.brightBlue);

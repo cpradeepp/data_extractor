@@ -1,14 +1,14 @@
 const {assert, expect, should} = require('chai');
 const mongoose = require("mongoose");
 const colors = require('colors');
-const {getDirectories, getRdfFile} = require('./../../tools/utils');
-const {DB_HOST, DB_PORT, DB_COLLECTION} = require('./../../settings/constants');
+const {getDirectories, getRdfFile} = require('./../tools/utils');
+const {DB_HOST, DB_PORT, DB_COLLECTION} = require('./../settings/constants');
 const SOURCE = './test/source';
-const {getDataFromFile} = require('./../../services/extractor');
-const {createRecord, deleteData} = require('./../../services/modelService');
+const {getDataFromFile} = require('./../services/extractor');
+const {createRecord, deleteData} = require('./../services/modelService');
 
 
-// Test data to compare
+/** Test data **/
 const directoriesInSource = [ 'test/source/1', 'test/source/10', 'test/source/11', 'test/source/12', 'test/source/13', 'test/source/14', 'test/source/2', 'test/source/3', 'test/source/4', 'test/source/5', 'test/source/6', 'test/source/7', 'test/source/8', 'test/source/9' ];
 const rdfFilesInSource = ['pg1.rdf'];
 const pg1Data = {
@@ -42,9 +42,10 @@ const createErrorData = {
 	],
 	license_rights: 'Public domain in the USA.'
 };
+/** End of test data **/
 
 describe('App', () => {
-	const directories = getDirectories(SOURCE);
+	let directories;
 	let dbConn;
 	let fileData, getData, createRecordTest, deleteRecordTest;
 
@@ -59,6 +60,8 @@ describe('App', () => {
 	});
 
 	describe('Testing getDirectories', () => {
+		directories = getDirectories(SOURCE);
+		console.log(directories)
 		it('getDirectories should return an array', () => {
 			assert.isArray(directories);
 		});
@@ -94,7 +97,7 @@ describe('App', () => {
 					it('getDataFromFile should return and object', () => {
 						assert.isObject(fileData);
 					});
-					it('getDataFromFile should return and object', () => {
+					it('getDataFromFile should match the test data', () => {
 						expect(fileData).to.eql(pg1Data);
 					});
 					done()
