@@ -8,6 +8,7 @@ The app assumes there is only one RDF file per folder and one book per file.
 
 ## Installation
 Please refer the below link to install MongoDB and start the service
+
 https://docs.mongodb.com/manual/administration/install-community/
 
 https://docs.mongodb.com/manual/mongo/#start-the-mongo-shell-and-connect-to-mongodb
@@ -22,6 +23,9 @@ npm install
 npm run test
 npm run coverage (for a report)
 ```
+
+### Source files
+Create a directory named **source** and dump all the extracted content from the zip.
 
 ### To start the server
 ```
