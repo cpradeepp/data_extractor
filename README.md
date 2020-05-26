@@ -18,6 +18,11 @@ clone repo
 npm install
 ```
 
+### PORTS
+**MongoDB:** 27017
+
+**Server:** 3001
+
 ### To run test
 ```
 npm run test
